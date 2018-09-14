@@ -1,0 +1,131 @@
+{% extends 'algorithm/base.html' %}
+{% load static %}
+
+{% block title %}{{ algorithm.alg_name }}{% endblock %}
+
+{% block body %}
+
+    <div class="spacer"></div>
+
+    <table>
+        <tr>
+            <th><h1>{{ algorithm.alg_name }}</h1></th>
+            <th><img width="60" height="60" style="margin-left:15px;" src="{% static 'algorithm/images/' %}{{ algorithm.alg_logo }}"></th>
+        </tr>
+    </table>
+
+    <div class="row">
+        <div class="col col-lg-1 col-md-1"></div>
+
+        <div class="col col-lg-10 col-md-10">
+            <div class="spacer"></div>
+            <p>{{ algorithm.alg_description | safe }}</p>
+            <!-- Description from https://www.geeksforgeeks.org/merge-sort/-->
+            <p></p>
+            <p><b>Instructions:</b> The controls below can be used to run an example of the <b>{{algorithm.alg_name}}</b> algorithm.
+            Set the size of the array to be sorted and the time interval between actions and then press <i>Start Sort</i> to see the algorithm at work.
+            Use the <i>Pause</i> button to pause the algorithm at any time and use the <i>Step</i> button to advance the algorithm at your own pace.
+            Once you feel like you understand the algorithm press <i>Start</i> in the <i>Test your knowledge</i> section to quiz yourself.</p>
+        </div>
+
+        <div class="col col-lg-1 col-md-1"></div>
+    </div>
+    <!--{% for n in numbers %}
+        <p>{{ n }}</p>
+    {% endfor %}-->
+
+    <!--<form action="{% url 'algorithm:start_sort' algorithm.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Start sort">
+    </form>-->
+
+    <div class="spacer"></div>
+    <script>var alg_name = "{{algorithm.alg_name}}";</script>
+    <div class="container-fluid">
+
+        <div class="row">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="formArraySize">Size:</label>
+                    <input id="formArraySize" class="form-control" type="number" value="15"/>
+                </div>
+                <div class="form-group">
+                    <label for="formInterval">Time interval (ms):</label>
+                    <input id="formInterval" class="form-control" type="number" value="500"/>
+                </div>
+                <button type="button" class="btn" id="start" >Start sort</button>
+                <button type="button" class="btn" id="pause" >Pause</button>
+                <button type="button" class="btn" id="step" >Step</button>
+            </form>
+        </div>
+
+        <p></p>
+        <div class="row">
+
+            <div class="col col-lg-7 col-md-7 col-sm-7" id="canvas-container">
+
+                <table class="table">
+                    <tr>
+                        <td><p>Comparisons are <span class="orange">orange</span></p></td>
+                        <td><p>Swaps are <span class="red">red</span></p></td>
+                        <td><p>Selected elements are <span class="purple">purple</span></p></td>
+                    </tr>
+                </table>
+
+                <canvas id="sort-canvas" width="" height="500"></canvas>
+
+                <div class="row status-container">
+                    <div class="col col-lg-2 col-md-2 col-sm-2 status-title">
+                        <h4 class="align-text-middle">Action</h4>
+                    </div>
+
+                    <div class="col col-lg-10 col-md-10 col-sm-10">
+                        {% include sort_status %}
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+
+                <table class="table">
+                    <caption><b>{{ algorithm.alg_name }} Time Complexity</b></caption>
+                    <tr>
+                        <td><p>Average: {{ algorithm.alg_complexity_average }}</p></td>
+                        <td><p>Best: {{ algorithm.alg_complexity_best }}</p></td>
+                        <td><p>Worst: {{ algorithm.alg_complexity_worst }}</p></td>
+                    </tr>
+                </table>
+
+                <div class="spacer-big"></div>
+            </div>
+
+            <div class="col col-lg-1 col-md-1 col-sm-1"></div>
+
+            <div class="col col-lg-4 col-md-4 col-sm-4">
+
+                <div class="code-container">
+                    <h3>Pseudocode</h3>
+                    {% include sort_code %}
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="code-container">
+                    <h3>Test your knowledge</h3>
+                    <button type="button" class="quiz-btn" id="quiz">Start</button>
+                    <div class="code hide" id="question"><p>Select the next action that the {{algorithm.alg_name}} algorithm will perform:</p></div>
+                    <div class="answers">
+                        <div class="code answer correct hide" id="answer1"></div>
+                        <div class="code answer false hide" id="answer2"></div>
+                        <div class="code answer false hide" id="answer3"></div>
+                    </div>
+                    <div class="result hide" id="result-correct">Correct!</div>
+                    <div class="result hide" id="result-incorrect">Inorrect!</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Default{% endblock %}</title>
+    <!-- Load static file -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'algorithm/style.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nova+Script" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <!-- header  -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-items">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'algorithm:index' %}">SortSite</a>
+            </div>
+
+            <!-- Items -->
+            <div class="collapse navbar-collapse" id="navbar-items">
+                <ul class="nav navbar-nav">
+                    <li class="divider-vertical"></li>
+                    <li class="nav-item"><a href="{% url 'algorithm:bigo' %}">Big O Notation</a></li>
+                    {% for algorithm in all_algorithms %}
+                    <li class="nav-item"><a href="{% url 'algorithm:sort_detail' algorithm.id %}">{{ algorithm.alg_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container main">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+</body>
+
+    <script src="{% static 'algorithm/sort.js' %}"></script>
+    <script src="{% static 'algorithm/bigo.js' %}"></script>
+
+</html>

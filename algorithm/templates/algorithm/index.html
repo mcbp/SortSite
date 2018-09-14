@@ -1,0 +1,70 @@
+{% extends 'algorithm/base.html' %}
+{% load static %}
+
+{% block title %}SortSite: Learn sorting{% endblock %}
+
+{% block body %}
+
+    {% if all_algorithms %}
+        <div class="row">
+
+            <div class="jumbotron" style="padding-bottom:0;">
+              <h2>SortSite</h2>
+              <hr class="my-4">
+              <p>Understand sorting algorithms</p>
+            </div>
+
+            <div class="row">
+                <div class="col col-lg-2 col-md-2"></div>
+                <div class="col col-lg-8 col-md-8">
+                    <p>Sorting is the process of rearranging data into a defined pattern,
+                        and is one of the most common, important and fundamental concepts studied in Computer Science.
+                        Applications in the real world can be found across large varieties of types of software,
+                        including database manipulation, compression utilities and computer games.
+                    </p>
+                    <p>This site aims to help you understand the concept of sorting and demonstrate how a variety of sorting algorithms function when applied to a problem.
+                        There are many different techniques and algorithms used to perform sorting operations, with each having their own strengths and weaknesses.
+                        Use the menu below to select a sorting algorithm you wish to explore and learn more about.</p>
+                </div>
+                <div class="col col-lg-2 col-md-2"></div>
+            </div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+
+            <a href="{% url 'algorithm:bigo' %}">
+                <div class="col-lg-4 col-md-4 col-sm-4 tile bigo">
+                    <div class="tile-content">
+                        <img class="tile-logo" src="{% static 'algorithm/images/on.png' %}"/>
+                        <p class="tile-text">Big O notation</p>
+                    </div>
+                </div>
+            </a>
+
+            {% for algorithm in all_algorithms %}
+            <a href="{% url 'algorithm:sort_detail' algorithm.id %}">
+                <div class="col-lg-4 col-md-4 col-sm-4 tile {{algorithm.alg_logo}}">
+                    <div class="tile-content">
+                        <div class="table">
+                            <div class="table-cell">
+                                <img class="tile-logo" src="{% static 'algorithm/images/' %}{{ algorithm.alg_logo }}"/>
+                                <p class="tile-text">{{ algorithm.alg_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+
+            <!--
+            <div class="col-lg-4 col-md-4 col-sm-4 tile"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 tile"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 tile"></div>
+            -->
+
+        </div>
+
+    {% else %}
+        <h3> No algorithms in database</h3>
+    {% endif %}
+
+{% endblock %}

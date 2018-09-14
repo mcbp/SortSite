@@ -1,0 +1,109 @@
+{% extends 'algorithm/base.html' %}
+{% load static %}
+
+{% block title %}Big O Notation{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="jumbotron">
+              <h2>Big O Notation</h2>
+              <hr class="my-4">
+        </div>
+
+        <div class="col col-lg-1 col-md-1"></div>
+        <div class="bigo-main container-fluid col col-lg-10 col-md-10 col-sm-12">
+
+            <p><b>Big O Notation</b> in computer science is a way to represent the length of time an algorithm takes to execute.
+                It is used to compare and understand the efficiency of different algorithms and approaches to mathematical problems.
+                Naturally, this concept can be applied to sorting algorithms to compare the effectiveness of each algorithm.
+            </p>
+
+            <p>Here are some common Big O Notation time complexities that can be found in a variety of sorting algorithms:</p>
+            <!-- CONSTANT -->
+            <div class="spacer"></div>
+            <h4>O(1) Constant Time</h4>
+            <p>An algorithm with a constant time execution will always take the same amount of time to execute.
+                The time to execute is independent of the input.
+                The example below will always output the value in the array with the 3rd index regardless of the size of the array.
+            </p>
+            <pre>array = [1, 2, 3, 4, 5<span id="addConstantHere"></span>]
+<c>print</c> array[3]
+
+Output: <span id="outConstant"></span>
+Run Time: <span id="runConstant"></span></pre>
+            <form class="form-inline">
+                <button type="button" class="btn" id="executeConstant">Execute</button>
+                <button type="button" class="btn" id="addConstant">Append value</button>
+            </form>
+            <div class="spacer"></div>
+
+
+            <!-- LINEAR -->
+            <div class="spacer"></div>
+            <h4>O(n) Linear Time</h4>
+            <p>An algorithm with a linear time compelxity have execution time directly proportional to the size of it's input n.
+                The example below demonstrates how the execution time increases as the input size n is increased.
+            </p>
+            <pre>array = [1, 2, 3, 4, 5<span id="addLinearHere"></span>]
+<c>for</c> x <c>in</c> array:
+    <c>print</c> array[x]
+
+Output: <span id="outLinear"></span>
+Run Time: <span id="runLinear"></span></pre>
+            <form class="form-inline">
+                <button type="button" class="btn" id="executeLinear">Execute</button>
+                <button type="button" class="btn" id="addLinear">Append value</button>
+            </form>
+            <div class="spacer"></div>
+
+
+            <!-- QUADRATIC -->
+            <div class="spacer"></div>
+            <h4>O(n<sup>2</sup>) Quadratic Time</h4>
+            <p>An algorithm with quadratic time complexity will have execution time directly proportional to the square of input size n.
+                The example below demonstrates how for loops can be nested within each other to create algorithms with quadratic time complexity.
+                Increasing the amount of nested for loops will increase the time complexity exponential by 1 per loop, leading to cubic time complexity, then quartic time complexity and so forth.
+                Many sorting algorithms feature the use of nested iterations like bubble sort, insertion sort and selection sort and as such have quadratic time complexity.
+            </p>
+            <pre>array = [1, 2, 3, 4, 5]
+<c>for</c> x <c>in</c> array:
+    <c>for</c> y <c>in</c> array:<span id="addQuadHere"></span>
+        <span id="addQuadTabsHere"></span><c>print</c> array[x]
+
+Output: <span id="outQuad"></span>
+Run Time: <span id="runQuad"></span></pre>
+            <form class="form-inline">
+                <button type="button" class="btn" id="executeQuad">Execute</button>
+                <button type="button" class="btn" id="addQuad">Append loop</button>
+            </form>
+            <div class="spacer"></div>
+
+
+            <!-- LOGARITHMIC -->
+            <div class="spacer"></div>
+            <h4>O(log n) Logarithmic Time</h4>
+            <p>An algorithm with logarithmic time complexity will have execution time proportional to the logarithm of the input size n.
+                Sorting algorithms that use divide and conquer techniques like merge sort and quick sort have logarithmic time complexities.
+            </p>
+            <pre>array = [1, 2, 3, 4, 5, 6, 7, 8<span id="addLogHere"></span>]
+<c>for</c> x = 1; x &lt; array.size; x = x * 2:
+    <c>print</c> x
+
+Output: <span id="outLog"></span>
+Run Time: <span id="runLog"></span></pre>
+            <form class="form-inline">
+                <button type="button" class="btn" id="executeLog">Execute</button>
+                <button type="button" class="btn" id="addLog">Append value</button>
+            </form>
+
+            <div class="spacer-big"></div>
+
+        </div>
+        <div class="col col-lg-1 col-md-1"></div>
+
+    </div>
+
+
+{% endblock %}
