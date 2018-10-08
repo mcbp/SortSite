@@ -2,7 +2,7 @@
 
 My final year university project - **SortSite** is a Django-based website that utilises animation and interactivity to help students understand sorting algorithms.
 
-http://mcbp.pythonanywhere.com/algorithm/
+http://mcbp.pythonanywhere.com
 
 # Screenshots
 
